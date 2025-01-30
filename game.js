@@ -3,7 +3,7 @@ const config = {
     type: Phaser.AUTO,
     width: 800,
     height: 600,
-    backgroundColor: '#87CEEB', // Sfondo celeste per verificare se la scena si carica
+    backgroundColor: '#87CEEB', // Sfondo celeste per debugging
     physics: {
         default: 'arcade',
         arcade: {
@@ -26,17 +26,24 @@ let monsters = [];
 let battleMode = false;
 
 function preload() {
-    this.load.image('tiles', 'tilemap.png'); // Carica la mappa
+    this.load.image('tiles', 'tilemap.png');
+    this.load.tilemapTiledJSON('map', 'map.json'); // Carichiamo un tilemap JSON
     this.load.spritesheet('player', 'player.png', { frameWidth: 32, frameHeight: 32 });
     this.load.spritesheet('monster', 'monster.png', { frameWidth: 32, frameHeight: 32 });
     this.load.image('battle_bg', 'battle_bg.png');
 }
 
 function create() {
-    this.add.image(400, 300, 'tiles'); // Aggiunge la mappa come sfondo statico
+    // Creazione della mappa
+    const map = this.make.tilemap({ key: 'map' });
+    const tileset = map.addTilesetImage('tileset', 'tiles');
+    const worldLayer = map.createLayer('World', tileset, 0, 0);
+    worldLayer.setCollisionByProperty({ collides: true });
     
+    // Aggiungiamo il player nella posizione corretta
     player = this.physics.add.sprite(100, 100, 'player');
     player.setCollideWorldBounds(true);
+    this.physics.add.collider(player, worldLayer);
     
     this.anims.create({
         key: 'walk',
@@ -47,9 +54,9 @@ function create() {
     
     cursors = this.input.keyboard.createCursorKeys();
     
-    // Aggiungere mostri
+    // Aggiungere mostri visibili e posizionati correttamente
     for (let i = 0; i < 3; i++) {
-        let monster = this.physics.add.sprite(200 + i * 100, 200, 'monster');
+        let monster = this.physics.add.sprite(300 + i * 100, 200, 'monster');
         monsters.push(monster);
     }
     
