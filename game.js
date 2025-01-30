@@ -25,18 +25,13 @@ let monsters = [];
 let battleMode = false;
 
 function preload() {
-    this.load.image('tiles', 'assets/tilemap.png');
-    this.load.tilemapTiledJSON('map', 'assets/map.json');
-    this.load.spritesheet('player', 'assets/player.png', { frameWidth: 32, frameHeight: 32 });
-    this.load.spritesheet('monster', 'assets/monster.png', { frameWidth: 32, frameHeight: 32 });
-    this.load.image('battle_bg', 'assets/battle_bg.png');
+    this.load.image('tiles', 'tilemap.png');
+    this.load.spritesheet('player', 'player.png', { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet('monster', 'monster.png', { frameWidth: 32, frameHeight: 32 });
+    this.load.image('battle_bg', 'battle_bg.png');
 }
 
 function create() {
-    const map = this.make.tilemap({ key: 'map' });
-    const tileset = map.addTilesetImage('tileset', 'tiles');
-    const worldLayer = map.createLayer('World', tileset, 0, 0);
-    
     player = this.physics.add.sprite(100, 100, 'player');
     player.setCollideWorldBounds(true);
     
