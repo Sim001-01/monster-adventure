@@ -1,43 +1,13 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <title>Monster Adventure</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <title>Pokemon Like Game</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.55.2/phaser.min.js"></script>
+    <script src="game.js"></script>
 </head>
 <body>
-  <h1>Monster Adventure - Demo</h1>
-  
-  <div id="game-container">
-    <div id="map-container">
-      <canvas id="game-map" width="320" height="320"></canvas>
-    </div>
-    <div id="log-container">
-      <div id="log"></div>
-      <button id="battle-button">Avvia una Battaglia!</button>
-    </div>
-    <div id="battle-modal" class="hidden">
-      <div id="battle-screen">
-        <h2>Scontro tra mostri!</h2>
-        <div id="monster-info">
-          <div id="player-monster">
-            <p id="player-monster-name"></p>
-            <p id="player-monster-hp"></p>
-          </div>
-          <div id="enemy-monster">
-            <p id="enemy-monster-name"></p>
-            <p id="enemy-monster-hp"></p>
-          </div>
-        </div>
-        <div id="battle-log"></div>
-        <div id="battle-actions">
-          <button class="attack-btn" data-move="basic-attack">Attacco</button>
-          <button class="attack-btn" data-move="special-attack">Attacco Speciale</button>
-          <button id="run-btn">Fuga</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script src="script.js"></script>
+    <h1>Pokemon Like Game</h1>
+    <div id="game-container"></div>
 </body>
 </html>
